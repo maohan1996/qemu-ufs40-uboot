@@ -604,6 +604,8 @@ void mem_malloc_init(ulong start, ulong size)
 	mem_malloc_end = mem_malloc_start + size;
 	mem_malloc_brk = mem_malloc_start;
 
+  debug("enter in mem_malloc_init\n");
+
 #ifdef CONFIG_SYS_MALLOC_DEFAULT_TO_INIT
 	malloc_init();
 #endif

@@ -417,6 +417,15 @@ static int initr_mmc(void)
 }
 #endif
 
+#if CONFIG_IS_ENABLED(CONFIG_DM_SCSI_SCAN)
+static int initr_scsi(void)
+{
+	printf("SCSI:   ");
+	scsi_scan(true);
+	return 0;
+}
+#endif
+
 #ifdef CONFIG_PVBLOCK
 static int initr_pvblock(void)
 {
@@ -600,6 +609,7 @@ static int run_main_loop(void)
 
 static void initcall_run_r(void)
 {
+	printf("enter in initcall_run_r\n");
 	/*
 	 * Please do not add logic to this function (variables, if (), etc.).
 	 * For simplicity it should remain an ordered list of function calls.
@@ -709,6 +719,10 @@ static void initcall_run_r(void)
 #if CONFIG_IS_ENABLED(MMC)
 	INITCALL(initr_mmc);
 #endif
+#if CONFIG_IS_ENABLED(CONFIG_DM_SCSI_SCAN)
+	pritnf("initr_scsi \n");
+	INITCALL(initr_scsi);
+#endif
 #if CONFIG_IS_ENABLED(XEN)
 	INITCALL(xen_init);
 #endif
@@ -785,6 +799,7 @@ static void initcall_run_r(void)
 
 void board_init_r(gd_t *new_gd, ulong dest_addr)
 {
+	printf("enter in board_init_r\n");
 	/*
 	 * The pre-relocation drivers may be using memory that has now gone
 	 * away. Mark serial as unavailable - this will fall back to the debug
