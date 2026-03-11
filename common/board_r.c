@@ -417,7 +417,7 @@ static int initr_mmc(void)
 }
 #endif
 
-#if CONFIG_IS_ENABLED(CONFIG_DM_SCSI_SCAN)
+#ifdef CONFIG_DM_SCSI_SCAN
 static int initr_scsi(void)
 {
 	printf("SCSI:   ");
@@ -719,8 +719,8 @@ static void initcall_run_r(void)
 #if CONFIG_IS_ENABLED(MMC)
 	INITCALL(initr_mmc);
 #endif
-#if CONFIG_IS_ENABLED(CONFIG_DM_SCSI_SCAN)
-	pritnf("initr_scsi \n");
+
+#ifdef CONFIG_DM_SCSI_SCAN
 	INITCALL(initr_scsi);
 #endif
 #if CONFIG_IS_ENABLED(XEN)

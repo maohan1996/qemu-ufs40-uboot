@@ -88,4 +88,14 @@ config UFS_TI_J721E
 	  This selects the glue layer driver for Cadence controller
 	  present on TI's J721E devices.
 
+config QEMU_UFS
+	bool "Glue Layer driver for UFS on qemu devices"
+	help
+	  This selects the glue layer driver for qemu controller
+	  present on qemu devices.
+
+config DM_SCSI_SCAN
+	bool "boot scsi driver for UFS on qemu devices"
+	help
+	  This selects the glue layer driver for qemu ufs boot
 endmenu
